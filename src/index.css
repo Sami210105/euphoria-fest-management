@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400..700&display=swap');
 @import "tailwindcss";
 
+/* Photocard animation */
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -35,6 +36,7 @@
   animation: letterFade 0.5s ease forwards;
 }
 
+/* Astro animation */
 /* Image entry */
 @keyframes slideIn {
   from {
@@ -60,3 +62,4 @@
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
+

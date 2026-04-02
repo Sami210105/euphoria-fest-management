@@ -14,31 +14,54 @@ import img16 from "../assets/img16.jpeg";
 
 function PhotoCard() {
   const images = [
-    img2,img3,img16,img4,img7,img9,img10,img12,img14,img6,img15,img5,img13,
-    img2,img3,img16,img4,img7,img9,img10,img12,img14,img6,img15,img5,img13
+    img2,
+    img3,
+    img16,
+    img4,
+    img7,
+    img9,
+    img10,
+    img12,
+    img14,
+    img6,
+    img15,
+    img5,
+    img13,
+    img2,
+    img3,
+    img16,
+    img4,
+    img7,
+    img9,
+    img10,
+    img12,
+    img14,
+    img6,
+    img15,
+    img5,
+    img13,
   ];
 
   return (
-    <div className="overflow-hidden w-full py-6 bg-[#0E0A12]">
-      <div className="flex gap-6 animate-scroll">
+    <div className="relative overflow-hidden w-full py-6 bg-black">
+      <div className="absolute opacity-80 top-1 left-0 w-full h-2 bg-[repeating-linear-gradient(90deg,transparent_0_6px,#1C0F0F_6px_14px)] z-10" />
+      <div className="absolute opacity-80 bottom-1 left-0 w-full h-2 bg-[repeating-linear-gradient(90deg,transparent_0_6px,#1C0F0F_6px_14px)] z-10" />
 
+      <div className="flex gap-6 animate-scroll">
         {images.map((img, index) => (
           <div
             key={index}
-            className="relative flex-shrink-0 group rounded-xl overflow-hidden"
+            className="relative flex-shrink-0 group overflow-hidden"
           >
             <img
               src={img}
-              className="h-72 object-cover transition duration-500 
-              brightness-90 saturate-75 group-hover:brightness-100 
-              group-hover:saturate-100 group-hover:scale-105"
+              className="h-72 transition duration-500 
+          brightness-90 saturate-75 group-hover:brightness-100 
+          group-hover:saturate-100 group-hover:scale-105"
             />
-
-            <div className="absolute inset-0 bg-[#0E0A12]/5 
-              group-hover:bg-[#0E0A12]/10 transition duration-500" />
+            <div className="absolute inset-0 bg-black/10" />
           </div>
         ))}
-
       </div>
     </div>
   );
