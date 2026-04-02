@@ -32,7 +32,7 @@ function Home() {
               </span>
             ))}
           </h1>
-          <p className="text-3xl mt-4 text-right font-[Dancing_Script] text-[#A4161A]">Lose yourself in the magic of Euphoria!</p>
+          <p className="text-3xl mt-4 text-right font-[Dancing_Script] text-[#c05754]">Lose yourself in the magic of Euphoria!</p>
         </div>
       </div>
 
