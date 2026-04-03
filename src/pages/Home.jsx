@@ -5,10 +5,10 @@ import cta from "../assets/cta.png";
 function Home() {
   return (
     <div className="relative bg-[#1C0F0F] min-h-screen text-white">
-      <div className="flex items-center justify-between px-10 pt-10">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0 px-10 pt-10">
         <DiscoScene className="-top-10 relative" />
 
-        <div className="text-right">
+        <div className="text-center md:text-right">
           <h1 className="text-8xl font-bold flex justify-end font-[Bebas_Neue] tracking-wider text-[#F5E6C8]">
             {"Euphoria".split("").map((letter, index) => (
               <span
