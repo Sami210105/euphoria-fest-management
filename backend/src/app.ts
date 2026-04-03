@@ -12,8 +12,10 @@ app.use(express.json())
 const API_PREFIX = '/api/v1'
 
 import healthRouter from './routes/health.routes'
+import orderRouter from './routes/order.routes'
 
-app.use(API_PREFIX, healthRouter);
+app.use(`${API_PREFIX}/health`, healthRouter);
+app.use(`${API_PREFIX}/orders`, orderRouter);
 
 logger.info('APP', "App initialized");
 

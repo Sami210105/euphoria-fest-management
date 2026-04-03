@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Event {
+  id  String @id @default(uuid())
+  name  String
+  registration_amount   Int
+
+  created_at DateTime @default(now())
+
+  registrations Registration[]
+}
+
+model Registration {
+  id        String    @id @default(uuid())
+  name      String    
+  email     String
+  phone     String
+  event_id  String
+  status    RegistrationStatus  @default(PENDING)
+  
+  created_at DateTime  @default(now())
+  
+  event Event @relation(fields: [event_id], references: [id])
+  order     Order[]
+}
+
+model Order {
+  id    String  @id @default(uuid())
+  registration_id   String
+  amount    Int
+  status  OrderStatus @default(CREATED)
+  razorpay_order_id   String?
+
+  created_at   DateTime  @default(now())
+
+  registration Registration @relation(fields: [registration_id], references: [id])
+  payments Payment[]
+}
+
+model Payment {
+  id  String  @id @default(uuid())
+  order_id  String
+  razorpay_payment_id String
+  razorpay_signature  String
+  status  PaymentStatus
+
+  created_at    DateTime @default(now())
+
+  order Order @relation(fields: [order_id], references: [id])
+}
+
+enum RegistrationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+enum OrderStatus {
+  CREATED
+  PAID
+  FAILED
+}
+
+enum PaymentStatus {
+  SUCCESS
+  FAILED
+}
