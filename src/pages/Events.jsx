@@ -17,69 +17,132 @@ const FontImport = () => (
       100% { transform: translateX(-50%); }
     }
 
-    .card-hover { transition: border-color 0.3s, box-shadow 0.3s, background 0.3s; }
-    .card-hover:hover {
+    /* ── Card hover: entire card lifts + button fills ── */
+    .evt-card {
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, transform 0.25s ease;
+    }
+    .evt-card:hover {
       border-color: #c0392b !important;
-      box-shadow: 0 16px 48px rgba(139,26,26,0.35) !important;
-      background: linear-gradient(135deg,#2a0808,#1a0404) !important;
+      box-shadow: 0 20px 52px rgba(139,26,26,0.4) !important;
+      background: linear-gradient(135deg, #2d0909, #1c0404) !important;
+      transform: translateY(-3px);
     }
-    .card-hover:hover .reg-btn {
-      background: linear-gradient(135deg,#8B1A1A,#c0392b) !important;
+
+    /* Register button – visible in both states */
+    .reg-btn {
+      width: 100%;
+      padding: 11px 0;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 2px solid #8B1A1A;
+      background: transparent;
+      color: #c0392b;           /* visible in default state */
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .reg-btn:hover,
+    .evt-card:hover .reg-btn {
+      background: linear-gradient(135deg, #8B1A1A, #c0392b);
       color: #f5e6d3 !important;
+      border-color: #c0392b;
     }
-    .filter-btn { transition: all 0.2s; }
+
+    /* Filter buttons */
+    .filter-btn {
+      padding: 6px 14px;
+      font-size: 0.68rem;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      background: #1a0404;
+      color: #9a5050;
+      border: 1px solid #2a0808;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-btn:hover { color: #c9a88a; border-color: #5a1515; }
     .filter-btn.active {
-      background: linear-gradient(135deg,#8B1A1A,#c0392b) !important;
+      background: linear-gradient(135deg, #8B1A1A, #c0392b) !important;
       color: #f5e6d3 !important;
       border-color: #c0392b !important;
+    }
+
+    /* Day tab buttons */
+    .day-tab {
+      padding: 8px 20px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      cursor: pointer;
+      border: 1px solid #2a0808;
+      background: #1a0404;
+      color: #6a3030;
+      transition: all 0.2s ease;
+    }
+    .day-tab:hover { color: #c9a88a; border-color: #5a1515; }
+    .day-tab.active {
+      background: linear-gradient(135deg, #8B1A1A, #c0392b);
+      color: #f5e6d3;
+      border-color: #c0392b;
     }
   `}</style>
 );
 
-/* ─── Data ─── */
+/* ─── Data (dateOrder used for sorting) ─── */
 const EVENTS = [
   {
     id: 1, category: "MUSIC", icon: "🎸", color: "#8B1A1A",
     title: "Battle of Bands", tagline: "Let the guitars rage",
-    date: "APR 18", time: "6:00 PM", venue: "Open Air Amphitheatre", seats: 500,
+    date: "APR 18", dateOrder: 1, time: "6:00 PM", venue: "Open Air Amphitheatre", seats: 500,
     description: "Six bands. One stage. Zero mercy. Bring your best riffs and let the crowd decide who rules the night. Original compositions only — no covers allowed.",
     prizes: ["₹25,000 Cash", "Recording Session", "Trophy"],
   },
   {
     id: 2, category: "DANCE", icon: "🕺", color: "#5C1111",
     title: "Retro Groove", tagline: "Boogie back to the golden era",
-    date: "APR 19", time: "4:00 PM", venue: "Main Hall", seats: 300,
+    date: "APR 19", dateOrder: 2, time: "4:00 PM", venue: "Main Hall", seats: 300,
     description: "A solo and duo dance competition celebrating the golden eras of Bollywood and Disco. Think bell-bottoms, glitter, and grooves that move the soul.",
     prizes: ["₹20,000 Cash", "Trophies", "Merch Kit"],
   },
   {
     id: 3, category: "FILM", icon: "🎬", color: "#7A1F1F",
     title: "Reel Rumble", tagline: "Lights, camera, compete",
-    date: "APR 18", time: "10:00 AM", venue: "Screening Room B", seats: 120,
+    date: "APR 18", dateOrder: 1, time: "10:00 AM", venue: "Screening Room B", seats: 120,
     description: "A 48-hour short film challenge — teams get a genre, prop and dialogue prompt, then must deliver a complete film judged on creativity and storytelling.",
     prizes: ["₹15,000 Cash", "Festival Screening", "Certificate"],
   },
   {
     id: 4, category: "GAMING", icon: "🕹️", color: "#4A0E0E",
     title: "Arcade Royale", tagline: "Old school. No mercy.",
-    date: "APR 20", time: "2:00 PM", venue: "Tech Pavilion", seats: 200,
+    date: "APR 20", dateOrder: 3, time: "2:00 PM", venue: "Tech Pavilion", seats: 200,
     description: "Tournament across retro classics — Tekken, Street Fighter, Mario Kart and more. Single elimination. The last player standing takes everything.",
     prizes: ["₹12,000 Cash", "Gaming Peripherals", "Trophy"],
   },
   {
     id: 5, category: "ART", icon: "🎨", color: "#6B1616",
     title: "Canvas Chaos", tagline: "Paint the night red",
-    date: "APR 19", time: "11:00 AM", venue: "Art Wing", seats: 80,
+    date: "APR 19", dateOrder: 2, time: "11:00 AM", venue: "Art Wing", seats: 80,
     description: "Live painting competition with a hidden theme revealed at the start. Artists get 3 hours to interpret, create, and astonish. All mediums welcome.",
     prizes: ["₹10,000 Cash", "Art Supplies Kit", "Exhibition Spot"],
   },
   {
     id: 6, category: "THEATRE", icon: "🎭", color: "#3D0A0A",
     title: "Drama Mania", tagline: "All the world's a stage",
-    date: "APR 20", time: "5:30 PM", venue: "Black Box Theatre", seats: 150,
+    date: "APR 20", dateOrder: 3, time: "5:30 PM", venue: "Black Box Theatre", seats: 150,
     description: "10-minute street play competition. Teams of 5–10 tackle a social theme with raw energy, improvisation, and fearless storytelling. No props provided.",
     prizes: ["₹18,000 Cash", "Best Actor Award", "Trophy"],
   },
+];
+
+const DATES = [
+  { label: "ALL DAYS", value: "ALL" },
+  { label: "APR 18 · DAY 1", value: "APR 18" },
+  { label: "APR 19 · DAY 2", value: "APR 19" },
+  { label: "APR 20 · DAY 3", value: "APR 20" },
 ];
 
 const GUESTS = [
@@ -88,7 +151,7 @@ const GUESTS = [
     title: "Cricket Legend & The Hitman",
     number: "45",
     tag: "Special Guest",
-    image: "/rohit.jpg",          // place rohit.jpg in your /public folder
+    image: "/rohit.jpg",
     description: "The Hitman himself graces Euphoria 2026. India's record-breaking opener and beloved captain joins us for an exclusive fan interaction — up close, unscripted, unforgettable.",
     stats: [{ label: "ODI 100s", value: "31" }, { label: "T20I Runs", value: "4k+" }, { label: "IPL Titles", value: "5" }],
   },
@@ -97,16 +160,10 @@ const GUESTS = [
     title: "King of Cricket",
     number: "18",
     tag: "Star Guest",
-    image: "/virat.jpg",          // place virat.jpg in your /public folder
+    image: "/virat.jpg",
     description: "One of the greatest batsmen of all time, Virat Kohli brings his passionate energy off the field to Euphoria for a never-before-seen conversation on sport, life, and legacy.",
     stats: [{ label: "ODI 100s", value: "54" }, { label: "Test Runs", value: "9k+" }, { label: "Cups Won", value: "2" }],
   },
-];
-
-const SCHEDULE = [
-  { day: "DAY 1", date: "April 18", events: ["Battle of Bands – 6:00 PM", "Reel Rumble – 10:00 AM"] },
-  { day: "DAY 2", date: "April 19", events: ["Retro Groove – 4:00 PM", "Canvas Chaos – 11:00 AM"] },
-  { day: "DAY 3", date: "April 20", events: ["Arcade Royale – 2:00 PM", "Drama Mania – 5:30 PM", "Guest Meet & Greet – 3:00 PM"] },
 ];
 
 /* ─── Fade-in hook ─── */
@@ -114,14 +171,17 @@ function useFadeIn(threshold = 0.08) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold });
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true); },
+      { threshold }
+    );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
   return [ref, visible];
 }
 
-/* ─── Small shared components ─── */
+/* ─── Shared UI ─── */
 function SectionLabel({ children }) {
   return (
     <p style={{ color: "#8B1A1A", fontFamily: "'Oswald',sans-serif", letterSpacing: "0.3em", fontSize: "0.68rem", textAlign: "center", marginBottom: 6 }}>
@@ -129,7 +189,6 @@ function SectionLabel({ children }) {
     </p>
   );
 }
-
 function SectionTitle({ children }) {
   return (
     <h2 style={{ fontFamily: "'Bebas Neue',cursive", fontSize: "clamp(2.6rem,7vw,5.5rem)", color: "#f5e6d3", letterSpacing: "0.06em", lineHeight: 1, textAlign: "center" }}>
@@ -137,7 +196,6 @@ function SectionTitle({ children }) {
     </h2>
   );
 }
-
 function Hairline() {
   return <div style={{ height: 1, background: "linear-gradient(to right,transparent,#4a1010,transparent)", margin: "14px 0" }} />;
 }
@@ -146,21 +204,25 @@ function Hairline() {
 function EventCard({ event, index }) {
   const [ref, visible] = useFadeIn();
   return (
-    <div ref={ref} className="card-hover"
+    <div
+      ref={ref}
+      className="evt-card"
       style={{
-        position: "relative", overflow: "hidden",
-        display: "flex", flexDirection: "column",
+        position: "relative",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
         padding: "20px",
-        background: "linear-gradient(135deg,#1e0606,#120303)",
+        background: "linear-gradient(135deg, #1e0606, #120303)",
         border: "1px solid #3a1010",
         boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(28px)",
         transition: `opacity 0.5s ease ${index * 0.07}s, transform 0.5s ease ${index * 0.07}s`,
         cursor: "pointer",
-      }}>
-
-      {/* Top */}
+      }}
+    >
+      {/* Top row: category + icon */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
         <span style={{ display: "inline-block", padding: "3px 10px", fontSize: "0.65rem", fontFamily: "'Oswald',sans-serif", fontWeight: 700, letterSpacing: "0.18em", background: event.color, color: "#f5e6d3" }}>
           {event.category}
@@ -168,7 +230,7 @@ function EventCard({ event, index }) {
         <span style={{ fontSize: "1.9rem", lineHeight: 1 }}>{event.icon}</span>
       </div>
 
-      {/* Title */}
+      {/* Title + tagline */}
       <h3 style={{ fontFamily: "'Bebas Neue',cursive", fontSize: "clamp(1.55rem,3.5vw,2rem)", color: "#f5e6d3", letterSpacing: "0.04em", lineHeight: 1, marginBottom: 4 }}>
         {event.title}
       </h3>
@@ -177,8 +239,8 @@ function EventCard({ event, index }) {
       </p>
 
       {/* Meta */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 16px", marginBottom: 10, fontFamily: "'Oswald',sans-serif", color: "#9a5050", fontSize: "0.7rem", letterSpacing: "0.07em", fontWeight: 600 }}>
-        <span>📅 {event.date}</span>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 14px", marginBottom: 10, fontFamily: "'Oswald',sans-serif", color: "#b07070", fontSize: "0.7rem", letterSpacing: "0.07em", fontWeight: 600 }}>
+        <span>📅 {event.date}, 2026</span>
         <span>🕐 {event.time}</span>
         <span>📍 {event.venue}</span>
         <span>🎟 {event.seats} seats</span>
@@ -200,14 +262,11 @@ function EventCard({ event, index }) {
         ))}
       </div>
 
-      {/* Button */}
-      <button className="reg-btn"
-        style={{ width: "100%", padding: "10px", fontFamily: "'Oswald',sans-serif", fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.18em", border: "2px solid #8B1A1A", background: "transparent", color: "#8B1A1A", cursor: "pointer", transition: "all 0.3s" }}>
-        REGISTER NOW →
-      </button>
+      {/* Register button — always visible */}
+      <button className="reg-btn">REGISTER NOW →</button>
 
       {/* Corner accent */}
-      <div style={{ position: "absolute", top: 0, right: 0, width: 36, height: 36, background: `linear-gradient(135deg,transparent 50%,${event.color}60 50%)`, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: 0, right: 0, width: 36, height: 36, background: `linear-gradient(135deg,transparent 50%,${event.color}70 50%)`, pointerEvents: "none" }} />
     </div>
   );
 }
@@ -218,18 +277,22 @@ function GuestCard({ guest, index }) {
   const [imgErr, setImgErr] = useState(false);
 
   return (
-    <div ref={ref}
+    <div
+      ref={ref}
       style={{
-        position: "relative", overflow: "hidden",
-        display: "flex", flexDirection: "row", flexWrap: "wrap",
+        position: "relative",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
         background: "linear-gradient(150deg,#1e0606,#0e0202 55%,#1a0808)",
         border: "1px solid #5a1515",
         boxShadow: "0 20px 56px rgba(0,0,0,0.6)",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(36px)",
         transition: `opacity 0.65s ease ${index * 0.15}s, transform 0.65s ease ${index * 0.15}s`,
-      }}>
-
+      }}
+    >
       {/* Jersey number watermark */}
       <div style={{ position: "absolute", right: -8, bottom: -8, fontFamily: "'Bebas Neue',cursive", fontSize: "clamp(7rem,20vw,12rem)", color: "#1a0404", lineHeight: 0.85, pointerEvents: "none", userSelect: "none" }}>
         {guest.number}
@@ -238,8 +301,12 @@ function GuestCard({ guest, index }) {
       {/* Photo */}
       <div style={{ flexShrink: 0, width: "clamp(120px,28%,190px)", minHeight: 260, background: "#160404", borderRight: "1px solid #3a1010", position: "relative", overflow: "hidden" }}>
         {!imgErr ? (
-          <img src={guest.image} alt={guest.name} onError={() => setImgErr(true)}
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", display: "block", filter: "sepia(12%) contrast(1.05)" }} />
+          <img
+            src={guest.image}
+            alt={guest.name}
+            onError={() => setImgErr(true)}
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", display: "block", filter: "sepia(12%) contrast(1.05)" }}
+          />
         ) : (
           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "4rem" }}>🏏</div>
         )}
@@ -249,7 +316,6 @@ function GuestCard({ guest, index }) {
       {/* Info */}
       <div style={{ flex: 1, minWidth: 220, position: "relative", zIndex: 1, padding: "clamp(16px,3vw,24px)", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 12 }}>
         <div>
-          {/* Tag */}
           <span style={{ display: "inline-block", padding: "3px 10px", fontSize: "0.65rem", fontFamily: "'Oswald',sans-serif", fontWeight: 700, letterSpacing: "0.14em", background: "#8B1A1A", color: "#f5e6d3", marginBottom: 10 }}>
             ⭐ {guest.tag}
           </span>
@@ -261,7 +327,6 @@ function GuestCard({ guest, index }) {
             {guest.title}
           </p>
 
-          {/* India badge */}
           <span style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "3px 10px", fontSize: "0.65rem", fontFamily: "'Oswald',sans-serif", letterSpacing: "0.08em", background: "#0e1e0a", border: "1px solid #2d5a1b", color: "#6ab04c", marginBottom: 12 }}>
             🇮🇳 TEAM INDIA · #{guest.number}
           </span>
@@ -296,11 +361,45 @@ function GuestCard({ guest, index }) {
   );
 }
 
+/* ─── Date Group Header ─── */
+function DateHeader({ date, dayNum }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: "clamp(16px,3vw,24px)", marginTop: "clamp(32px,5vw,52px)" }}>
+      {/* Day pill */}
+      <div style={{ flexShrink: 0, textAlign: "center", padding: "8px 18px", background: "linear-gradient(135deg,#8B1A1A,#c0392b)", boxShadow: "0 4px 16px rgba(139,26,26,0.4)" }}>
+        <div style={{ fontFamily: "'Oswald',sans-serif", color: "#f5e6d3aa", fontSize: "0.6rem", letterSpacing: "0.2em" }}>DAY</div>
+        <div style={{ fontFamily: "'Bebas Neue',cursive", color: "#f5e6d3", fontSize: "1.8rem", lineHeight: 1, letterSpacing: "0.05em" }}>{dayNum}</div>
+      </div>
+      {/* Date text */}
+      <div>
+        <div style={{ fontFamily: "'Bebas Neue',cursive", color: "#f5e6d3", fontSize: "clamp(1.6rem,4vw,2.6rem)", letterSpacing: "0.06em", lineHeight: 1 }}>
+          {date === "APR 18" ? "APRIL 18, 2026" : date === "APR 19" ? "APRIL 19, 2026" : "APRIL 20, 2026"}
+        </div>
+        <div style={{ fontFamily: "'Playfair Display',serif", color: "#c0392b", fontStyle: "italic", fontSize: "0.82rem", marginTop: 2 }}>
+          {date === "APR 18" ? "Opening Day" : date === "APR 19" ? "The Grand Middle" : "Finale Night"}
+        </div>
+      </div>
+      {/* Line */}
+      <div style={{ flex: 1, height: 1, background: "linear-gradient(to right,#4a1010,transparent)", marginLeft: 8 }} />
+    </div>
+  );
+}
+
 /* ─── Main Page ─── */
 export default function EventsPage() {
-  const [filter, setFilter] = useState("ALL");
-  const categories = ["ALL", ...new Set(EVENTS.map(e => e.category))];
-  const filtered = filter === "ALL" ? EVENTS : EVENTS.filter(e => e.category === filter);
+  const [activeDate, setActiveDate] = useState("ALL");
+
+  // Sort all events by date then time, group by date
+  const sortedEvents = [...EVENTS].sort((a, b) => {
+    if (a.dateOrder !== b.dateOrder) return a.dateOrder - b.dateOrder;
+    // Sort by time within same day
+    const toMin = t => { const [h, m] = t.replace(" AM","").replace(" PM","").split(":").map(Number); return (t.includes("PM") && h !== 12 ? h + 12 : h) * 60 + m; };
+    return toMin(a.time) - toMin(b.time);
+  });
+
+  const uniqueDates = [...new Set(sortedEvents.map(e => e.date))]; // ["APR 18","APR 19","APR 20"]
+
+  const filteredDates = activeDate === "ALL" ? uniqueDates : [activeDate];
 
   return (
     <div style={{ background: "#1a0505", minHeight: "100vh", fontFamily: "'Lora',serif" }}>
@@ -308,15 +407,15 @@ export default function EventsPage() {
 
       {/* ══ HERO ══ */}
       <section style={{ position: "relative", overflow: "hidden", background: "radial-gradient(ellipse at 50% 70%,#2a0808 0%,#1a0404 40%,#0e0202 100%)", padding: "clamp(52px,11vw,110px) clamp(20px,5vw,60px) clamp(44px,8vw,80px)" }}>
-        {/* Film holes - left */}
+        {/* Film holes left */}
         <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "clamp(14px,2.5vw,24px)", background: "#0e0202", display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "6px 0" }}>
           {Array.from({ length: 16 }).map((_, i) => <div key={i} style={{ margin: "0 2px", height: 7, borderRadius: 2, background: "#2a0808" }} />)}
         </div>
-        {/* Film holes - right */}
+        {/* Film holes right */}
         <div style={{ position: "absolute", top: 0, bottom: 0, right: 0, width: "clamp(14px,2.5vw,24px)", background: "#0e0202", display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "6px 0" }}>
           {Array.from({ length: 16 }).map((_, i) => <div key={i} style={{ margin: "0 2px", height: 7, borderRadius: 2, background: "#2a0808" }} />)}
         </div>
-        {/* Decorative ring */}
+        {/* Ring */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "min(500px,88vw)", height: "min(500px,88vw)", borderRadius: "50%", border: "1px solid #2a0808", pointerEvents: "none" }} />
 
         <div style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
@@ -327,37 +426,48 @@ export default function EventsPage() {
           <p style={{ color: "#c0392b", fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: "clamp(0.92rem,2.5vw,1.25rem)", marginTop: 14 }}>
             Where every night becomes a legend
           </p>
-          <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "6px 20px", marginTop: 18, fontFamily: "'Oswald',sans-serif", color: "#6a3030", fontSize: "0.68rem", letterSpacing: "0.22em" }}>
+          <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "6px 20px", marginTop: 18, fontFamily: "'Oswald',sans-serif", color: "#7a4040", fontSize: "0.68rem", letterSpacing: "0.22em" }}>
             <span>APR 18–20</span>
-            <span style={{ color: "#2a0808" }}>◆</span>
+            <span style={{ color: "#3a1010" }}>◆</span>
             <span>6 EVENTS</span>
-            <span style={{ color: "#2a0808" }}>◆</span>
+            <span style={{ color: "#3a1010" }}>◆</span>
             <span>₹1,00,000+ PRIZES</span>
           </div>
         </div>
       </section>
 
-      {/* ══ FILTER BAR ══ */}
-      <div style={{ position: "sticky", top: 0, zIndex: 40, background: "rgba(10,1,1,0.96)", backdropFilter: "blur(12px)", borderBottom: "1px solid #1e0606", padding: "10px 16px", display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 8 }}>
-        {categories.map(cat => (
-          <button key={cat} onClick={() => setFilter(cat)}
-            className={`filter-btn${filter === cat ? " active" : ""}`}
-            style={{ padding: "6px 14px", fontSize: "0.68rem", fontFamily: "'Oswald',sans-serif", fontWeight: 700, letterSpacing: "0.14em", background: "#1a0404", color: "#9a5050", border: "1px solid #2a0808", cursor: "pointer" }}>
-            {cat}
+      {/* ══ DATE FILTER BAR ══ */}
+      <div style={{ position: "sticky", top: 0, zIndex: 40, background: "rgba(10,1,1,0.97)", backdropFilter: "blur(12px)", borderBottom: "1px solid #1e0606", padding: "10px 16px", display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 8 }}>
+        {DATES.map(d => (
+          <button
+            key={d.value}
+            onClick={() => setActiveDate(d.value)}
+            className={`day-tab${activeDate === d.value ? " active" : ""}`}
+          >
+            {d.label}
           </button>
         ))}
       </div>
 
-      {/* ══ EVENTS GRID ══ */}
-      <section style={{ maxWidth: 1300, margin: "0 auto", padding: "clamp(24px,5vw,60px) clamp(12px,4vw,28px)" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,300px),1fr))", gap: "clamp(12px,2vw,22px)" }}>
-          {filtered.map((ev, i) => <EventCard key={ev.id} event={ev} index={i} />)}
-        </div>
+      {/* ══ EVENTS — GROUPED BY DATE ══ */}
+      <section style={{ maxWidth: 1300, margin: "0 auto", padding: "clamp(16px,4vw,40px) clamp(12px,4vw,28px) clamp(24px,5vw,56px)" }}>
+        {filteredDates.map((date, di) => {
+          const dayEvents = sortedEvents.filter(e => e.date === date);
+          const dayNum = date === "APR 18" ? "01" : date === "APR 19" ? "02" : "03";
+          return (
+            <div key={date}>
+              <DateHeader date={date} dayNum={dayNum} />
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,300px),1fr))", gap: "clamp(12px,2vw,22px)" }}>
+                {dayEvents.map((ev, i) => <EventCard key={ev.id} event={ev} index={i} />)}
+              </div>
+            </div>
+          );
+        })}
       </section>
 
       {/* ══ TICKER ══ */}
       <div style={{ overflow: "hidden", background: "#0e0202", borderTop: "2px solid #180404", borderBottom: "2px solid #180404", height: 38, display: "flex", alignItems: "center" }}>
-        <div style={{ display: "flex", gap: "2rem", whiteSpace: "nowrap", animation: "marquee 24s linear infinite", fontFamily: "'Oswald',sans-serif", color: "#280606", fontSize: "0.62rem", letterSpacing: "0.28em" }}>
+        <div style={{ display: "flex", gap: "2rem", whiteSpace: "nowrap", animation: "marquee 24s linear infinite", fontFamily: "'Oswald',sans-serif", color: "#2e0808", fontSize: "0.62rem", letterSpacing: "0.28em" }}>
           {Array.from({ length: 10 }).map((_, i) => (
             <span key={i}>✦ BATTLE OF BANDS ◆ RETRO GROOVE ◆ REEL RUMBLE ◆ ARCADE ROYALE ◆ CANVAS CHAOS ◆ DRAMA MANIA</span>
           ))}
@@ -375,31 +485,6 @@ export default function EventsPage() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,460px),1fr))", gap: "clamp(14px,3vw,28px)" }}>
           {GUESTS.map((g, i) => <GuestCard key={g.name} guest={g} index={i} />)}
-        </div>
-      </section>
-
-      {/* ══ SCHEDULE ══ */}
-      <section style={{ background: "linear-gradient(135deg,#160404,#0e0202)", borderTop: "1px solid #1e0606", borderBottom: "1px solid #1e0606", padding: "clamp(36px,7vw,68px) clamp(12px,4vw,28px)" }}>
-        <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <SectionLabel>3 Days of Magic</SectionLabel>
-          <SectionTitle>Event Schedule</SectionTitle>
-          <div style={{ marginTop: "clamp(20px,4vw,36px)", borderTop: "1px solid #2a0808" }}>
-            {SCHEDULE.map((row, i) => (
-              <div key={i} style={{ display: "flex", flexWrap: "wrap", borderBottom: "1px solid #1e0606" }}>
-                <div style={{ flexShrink: 0, width: "clamp(80px,16%,150px)", background: "#160404", borderRight: "1px solid #1e0606", padding: "14px 16px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                  <p style={{ fontFamily: "'Bebas Neue',cursive", color: "#c0392b", letterSpacing: "0.18em", fontSize: "clamp(1.1rem,2.5vw,1.3rem)", lineHeight: 1 }}>{row.day}</p>
-                  <p style={{ fontFamily: "'Oswald',sans-serif", color: "#6a3030", fontSize: "0.65rem", letterSpacing: "0.1em", marginTop: 2 }}>{row.date}</p>
-                </div>
-                <div style={{ flex: 1, padding: "12px 14px", display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8 }}>
-                  {row.events.map((ev, j) => (
-                    <span key={j} style={{ padding: "5px 11px", background: "#1a0404", border: "1px solid #2e0808", color: "#c9a88a", fontFamily: "'Oswald',sans-serif", fontSize: "0.68rem", letterSpacing: "0.06em" }}>
-                      {ev}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
