@@ -1,34 +1,62 @@
-export function GuestCard({ guest }) {
+export default function GuestCard({ guest }) {
   return (
-    <div className="relative overflow-hidden flex flex-wrap bg-gradient-to-br from-[#1e0606] to-[#0e0202] border border-[#5a1515] shadow-[0_20px_56px_rgba(0,0,0,0.6)]">
+    <div className="relative bg-[#C9A88A]/10 rounded-2xl overflow-hidden flex p-6 gap-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(122,52,49,0.2)]">
 
-      <div className="w-[150px] h-[260px] bg-[#160404] overflow-hidden">
+      {/* LEFT IMAGE */}
+      <div className="w-[350px] flex items-center justify-center border-4 border-[#C9A88A] rounded-2xl overflow-hidden">
         <img src={guest.image} alt={guest.name} className="w-full h-full object-cover" />
       </div>
 
-      <div className="flex-1 p-5">
-        <span className="text-xs bg-[#8B1A1A] px-3 py-1 text-[#f5e6d3] font-bold tracking-widest">
-          ⭐ {guest.tag}
-        </span>
+      {/* RIGHT CONTENT */}
+      <div className="flex-1 p-4 rounded-2xl bg-black/40 backdrop-blur-md">
 
-        <h3 className="text-[clamp(2rem,4vw,3rem)] text-[#f5e6d3] mt-2">
+        {/* Name */}
+        <h2 className="text-4xl font-bold text-[#f5e6d3] tracking-wide font-[Almendra] transition-all duration-300 group-hover:text-[#fff3e6]">
           {guest.name}
-        </h3>
-        <p className="text-[#c0392b] italic text-sm mb-2">
+        </h2>
+
+        {/* Subtitle */}
+        <p className="text-[#C05754] font-[Almendra] mt-1 mb-3">
           {guest.title}
         </p>
 
-        <p className="text-[#c9a88a] text-sm leading-relaxed">
+        {/* Team badge */}
+        <span className="inline-block bg-[#0e1e0a] border border-[#2d5a1b] text-[#6ab04c] text-xs px-3 py-1 mb-4">
+          {guest.team}
+        </span>
+
+        {/* Description */}
+        <p className="text-[#F5E6D3] text-sm leading-relaxed mb-5">
           {guest.description}
         </p>
 
-        <div className="flex gap-2 mt-4 flex-wrap">
+        {/* Stats */}
+        <div className="flex gap-4 mb-5 flex-wrap">
           {guest.stats.map((s, i) => (
-            <div key={i} className="px-3 py-2 bg-[#1a0404] border border-[#3a1010] text-center">
-              <div className="text-[#f5e6d3] font-bold text-lg">{s.value}</div>
-              <div className="text-xs text-[#9a5050] uppercase tracking-wider">{s.label}</div>
+            <div
+              key={i}
+              className="px-4 py-3 bg-[#C9A88A]/10 rounded-2xl text-center min-w-[70px]"
+            >
+              <div className="text-[#8B1A1A] text-xl font-bold">
+                {s.value}
+              </div>
+              <div className="text-[12px] text-[#C9A88A] tracking-wider uppercase">
+                {s.label}
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="bg-[#C9A88A] rounded-2xl px-3 py-3 flex items-center gap-4">
+          <div>
+            <p className="text-[10px] tracking-widest text-[#8B1A1A] font-bold uppercase">
+              Fan Meet & Greet
+            </p>
+            <p className="text-sm font-bold text-[#9a5050]">
+              {guest.event}
+            </p>
+          </div>
         </div>
       </div>
     </div>
