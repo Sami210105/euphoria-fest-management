@@ -60,7 +60,8 @@ export default function EventsPage() {
       </section>
 
       <section>
-        <h2 className="text-5xl text-center mt-2 font-[Bebas_Neue] text-[#f5e6d3]">Guests</h2>
+        <h2 className="text-5xl text-center mt-2 font-[Bebas_Neue] tracking-widest text-[#f5e6d3]">Special  Guests</h2>
+        <p className="text-center text-[#c9a88a] font-[Dancing_Script] italic">Icons off field legends on the stage</p>
       </section>
 
       {/* GUESTS */}
