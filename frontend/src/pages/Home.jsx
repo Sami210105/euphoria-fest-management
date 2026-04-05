@@ -1,5 +1,7 @@
 import PhotoCard from "../components/PhotoCard";
 import DiscoScene from "../components/DiscoScene";
+import CountdownTimer from "../components/CountdownTimer";
+import WhyEuphoria from "../components/WhyEuphoria";
 import cta from "../assets/cta.png";
 
 function Home() {
@@ -9,7 +11,7 @@ function Home() {
         <DiscoScene className="-top-10 relative" />
 
         <div className="text-center md:text-right">
-          <h1 className="text-8xl font-bold flex justify-end font-[Bebas_Neue] tracking-wider text-[#F5E6C8]">
+          <h1 className="text-8xl font-bold flex justify-center md:justify-end font-[Bebas_Neue] tracking-wider text-[#F5E6C8]">
             {"Euphoria".split("").map((letter, index) => (
               <span
                 key={index}
@@ -20,7 +22,7 @@ function Home() {
               </span>
             ))}
           </h1>
-          <p className="text-3xl text-right font-[Dancing_Script] text-[#c05754]">
+          <p className="text-3xl text-center md:text-right font-[Dancing_Script] text-[#c05754]">
             {"Where every event feels iconic, every plan is effortless, and every memory is worth the hype!!!"
               .split("")
               .map((word, index) => (
@@ -33,7 +35,7 @@ function Home() {
                 </span>
               ))}
           </p>
-          <div className="flex justify-end">
+          <div className="flex justify-center md:justify-end mb-8">
             <div className="relative mt-6 inline-block cursor-pointer group">
               <img src={cta} className="w-50" />
               <span className="absolute inset-0 flex items-center justify-end mr-4 text-lg font-bold text-black tracking-wide group-hover:scale-105 transition font-[Almendra]">
@@ -45,6 +47,8 @@ function Home() {
       </div>
 
       <PhotoCard />
+      <CountdownTimer />
+      <WhyEuphoria />
     </div>
   );
 }
