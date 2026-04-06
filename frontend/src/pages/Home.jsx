@@ -1,10 +1,14 @@
+import { useState } from "react";
 import PhotoCard from "../components/PhotoCard";
 import DiscoScene from "../components/DiscoScene";
 import CountdownTimer from "../components/CountdownTimer";
 import WhyEuphoria from "../components/WhyEuphoria";
 import cta from "../assets/cta.png";
+import { RegistrationModal } from "../components/RegistrationModal";
 
 function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="relative bg-[#1C0F0F] min-h-screen text-white overflow-hidden">
 
@@ -55,7 +59,7 @@ function Home() {
 
           {/* CTA */}
           <div className="flex justify-center md:justify-end mt-6 mb-6">
-            <div className="relative inline-block cursor-pointer group">
+            <div className="relative inline-block cursor-pointer group" onClick={() => setIsModalOpen(true)}>
               <img
                 src={cta}
                 className="w-36 sm:w-44 md:w-52 transition-transform duration-300 group-hover:scale-105"
@@ -81,6 +85,8 @@ function Home() {
       <div className="mt-10 sm:mt-16">
         <WhyEuphoria />
       </div>
+
+      {isModalOpen && <RegistrationModal onClose={() => setIsModalOpen(false)} />}
 
     </div>
   );

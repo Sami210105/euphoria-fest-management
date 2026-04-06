@@ -1,28 +1,23 @@
 import { useState } from "react";
 
-export default function EventRow({ event }) {
+export default function EventRow({ event, onRegister }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
     <div className="border-b border-[#c9a88a]/20">
-      {/* ── MAIN ROW ── */}
       <div className="flex items-center justify-between py-6">
-        {/* LEFT */}
         <div className="flex items-center gap-6">
-          {/* DATE */}
           <div className="text-gray-400 text-sm w-[80px]">
             <p>{event.date}</p>
             <p className="font-semibold">{event.time}</p>
           </div>
 
-          {/* IMAGE */}
           <img
             src={event.img}
             alt={event.title}
             className="w-[80px] h-[80px] rounded object-cover"
           />
 
-          {/* DETAILS */}
           <div>
             <h2 className="text-[#f5e6d3] text-lg font-semibold tracking-wide font-[Almendra]">
               {event.title}
@@ -36,9 +31,8 @@ export default function EventRow({ event }) {
           </div>
         </div>
 
-        {/* RIGHT BUTTONS */}
         <div className="flex flex-col gap-3">
-          <button className="bg-[#c05754] hover:bg-[#a94442] text-white px-4 py-2 text-sm rounded">
+          <button onClick={onRegister} className="bg-[#c05754] hover:bg-[#a94442] text-white px-4 py-2 text-sm rounded">
             Register
           </button>
           <button
@@ -50,7 +44,6 @@ export default function EventRow({ event }) {
         </div>
       </div>
 
-      {/* ── EXPANDED DETAILS PANEL ── */}
       {expanded && (
         <div className="pb-6 px-2 text-sm text-gray-300 flex flex-col gap-3">
           <p className="leading-relaxed font-[Almendra] text-[#c9a88a]">

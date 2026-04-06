@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import EventRow from "../components/EventRow";
 import GuestCard from "../components/GuestCard";
+import { RegistrationModal } from "../components/RegistrationModal";
 
 import guest1Img from "../assets/guest1.jpg";
 import guest2Img from "../assets/guest2.jpg";
@@ -8,6 +9,7 @@ import bandImg from "../assets/band.jpg";
 import danceImg from "../assets/dance.jpg";
 import techImg from "../assets/tech.jpg";
 import djImg from "../assets/dj.jpeg";
+import { events } from "../data/events";
 
 export default function Events() {
   const [search, setSearch] = useState("");
@@ -69,6 +71,16 @@ export default function Events() {
       prizes: ["Best Dancer Award", "Merch Kit"],
     },
   ];
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = (event) => {
+    setSelectedEvent(event);
+    setIsModalOpen(true);
+  }
+
+
+  /* ─── EVENTS DATA NOW IMPORTED ─── */
   const filtered = useMemo(() => {
     let result = [...events];
 
@@ -125,7 +137,7 @@ export default function Events() {
 
   return (
     <div className="bg-[#1C0F0F] min-h-screen text-white px-6 py-10">
-      
+
       {/* ─── HERO SECTION  ─── */}
       <section className="text-center py-24">
         <h1 className="text-[clamp(5rem,15vw,10rem)] tracking-widest text-[#f5e6d3] font-bold font-[Bebas_Neue]">
@@ -174,7 +186,7 @@ export default function Events() {
 
       <div className="max-w-6xl mx-auto mb-16">
         {filtered.length > 0 ? (
-          filtered.map((ev) => <EventRow key={ev.id} event={ev} />)
+          filtered.map((ev) => <EventRow key={ev.id} event={ev} onRegister={() => handleOpenModal(ev)} />)
         ) : (
           <p className="text-center text-[#6b4a4a] italic py-16 text-sm">
             No events found.
@@ -199,6 +211,14 @@ export default function Events() {
           ))}
         </div>
       </div>
+
+      {isModalOpen && selectedEvent &&
+        <RegistrationModal
+          event={selectedEvent}
+          onClose={() => setIsModalOpen(false)}
+        />
+      }
+
     </div>
   );
 }
