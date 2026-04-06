@@ -7,6 +7,7 @@ import guest2Img from "../assets/guest2.jpg";
 import bandImg from "../assets/band.jpg";
 import danceImg from "../assets/dance.jpg";
 import techImg from "../assets/tech.jpg";
+import djImg from "../assets/dj.jpeg";
 
 export default function Events() {
   const [search, setSearch] = useState("");
@@ -53,6 +54,19 @@ export default function Events() {
       seats: 180,
       description: "An interactive session with industry leaders sharing insights on the future of technology.",
       prizes: ["₹20,000 Cash", "Trophies", "Merch Kit"],
+    },
+    {
+      id: 4,
+      category: "DANCE",
+      img: djImg,
+      title: "Retro Themed DJ Night",
+      tagline: "Everybody dance now",
+      date: "APR 15",
+      time: "9:00 PM",
+      venue: "CITP Auditorium",
+      seats: 180,
+      description: "Get ready to dance the night away with our retro-themed DJ night!",
+      prizes: ["Best Dancer Award", "Merch Kit"],
     },
   ];
   const filtered = useMemo(() => {
