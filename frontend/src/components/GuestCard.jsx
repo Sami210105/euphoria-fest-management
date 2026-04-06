@@ -1,14 +1,14 @@
 export default function GuestCard({ guest }) {
   return (
-    <div className="relative bg-[#C9A88A]/10 rounded-2xl overflow-hidden flex p-6 gap-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(122,52,49,0.2)]">
+    <div className="group relative rounded-2xl overflow-hidden flex p-6 gap-6 transition-all duration-300 hover:-translate-y-[3px]">
 
       {/* LEFT IMAGE */}
       <div className="w-[350px] flex items-center justify-center border-4 border-[#C9A88A] rounded-2xl overflow-hidden">
-        <img src={guest.image} alt={guest.name} className="w-full h-full object-cover" />
+        <img src={guest.image} alt={guest.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
       </div>
 
       {/* RIGHT CONTENT */}
-      <div className="flex-1 p-4 rounded-2xl bg-black/40 backdrop-blur-md">
+      <div className="flex-1 p-4 rounded-2xl bg-black backdrop-blur-md">
 
         {/* Name */}
         <h2 className="text-4xl font-bold text-[#f5e6d3] tracking-wide font-[Almendra] transition-all duration-300 group-hover:text-[#fff3e6]">

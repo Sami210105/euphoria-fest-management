@@ -30,7 +30,7 @@ export default function CountdownTimer() {
 
   return (
     <section className="px-6 py-16 text-center">
-      <p className="font-[Dancing_Script] text-[#c05754] text-xl mb-1">
+      <p className="font-[Dancing_Script] text-[#c05754] text-2xl mb-1">
         tick tock...
       </p>
       <h2 className="font-[Bebas_Neue] text-6xl tracking-widest text-[#F5E6C8] mb-12">
@@ -47,7 +47,7 @@ export default function CountdownTimer() {
                   {time[unit]}
                 </span>
               </div>
-              <span className="font-[Dancing_Script] text-[#c05754] text-sm tracking-wide">
+              <span className="font-[Dancing_Script] text-[#c05754] text-lg tracking-wide">
                 {labels[i]}
               </span>
             </div>

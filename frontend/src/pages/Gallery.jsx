@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const YEARS = [
   {
     year: 2025,
-    theme: "ROYAL RHAPSODY",
+    theme: "Royal Rhapsody",
     accent: "#c9a96e",
     description:
       "Echoes of royalty, grace, and timeless celebration come alive.",
@@ -42,7 +42,7 @@ const YEARS = [
   },
   {
     year: 2024,
-    theme: "NEON NIGHTS",
+    theme: "Neon Nights",
     accent: "#c05754",
     description:
       "Electric energy, bold colours & nights that stretched till dawn.",
@@ -81,7 +81,7 @@ const YEARS = [
   },
   {
     year: 2023,
-    theme: "GOLDEN ERA",
+    theme: "Golden Era",
     accent: "#d4a853",
     description: "Vintage glamour, sepia tones & the magic of a bygone era.",
     photos: [
@@ -153,7 +153,8 @@ function PhotoCard({ photo, accent, index, visible }) {
             ? "sepia(0.3) saturate(1.1) brightness(0.85)"
             : "sepia(0.5) saturate(0.75) brightness(0.55)",
           transform: hovered ? "scale(1.06)" : "scale(1)",
-          transition: "filter 0.5s ease, transform 0.6s ease, opacity 0.4s ease",
+          transition:
+            "filter 0.5s ease, transform 0.6s ease, opacity 0.4s ease",
         }}
       />
 
@@ -200,7 +201,7 @@ function YearTab({ data, isActive, onClick }) {
       <span className="block font-[Bebas_Neue] text-3xl tracking-tight leading-none">
         {data.year}
       </span>
-      <span className="block font-[Dancing_Script] text-[0.65rem] opacity-75 tracking-wide mt-0.5">
+      <span className="block font-[Dancing_Script] text-lg opacity-75 tracking-wide mt-0.5">
         {data.theme}
       </span>
       {isActive && (
@@ -212,8 +213,6 @@ function YearTab({ data, isActive, onClick }) {
     </button>
   );
 }
-
-
 
 // ─── Main Gallery ─────────────────────────────────────────────────────────────
 export default function Gallery() {
@@ -235,26 +234,14 @@ export default function Gallery() {
       `}</style>
 
       <section className="relative overflow-hidden bg-[#1C0F0F] min-h-screen">
-
         <div className="max-w-[1120px] mx-auto px-4 sm:px-6 py-12 sm:py-16">
-
           {/* Heading */}
-          <div className="text-center mb-10 sm:mb-14">
-            <div className="flex items-center justify-center gap-4 mb-3">
-              <div className="h-px w-14 bg-gradient-to-r from-transparent to-[#c05754]" />
-              <span className="font-[Dancing_Script] text-[0.9rem] text-[#c05754] tracking-wide">
-                Euphoria Fest
-              </span>
-              <div className="h-px w-14 bg-gradient-to-l from-transparent to-[#c05754]" />
-            </div>
-
-            <h2 className="font-[Bebas_Neue] text-[#F5E6C8] leading-none mb-3 tracking-widest"
-              style={{ fontSize: "clamp(3.5rem, 9vw, 6rem)" }}
-            >
+          <div className="text-center py-18 sm:mb-14">
+            <h2 className="text-[clamp(5rem,15vw,10rem)] tracking-widest text-[#f5e6d3] font-bold font-[Bebas_Neue]">
               Memories
             </h2>
 
-            <p className="font-[Dancing_Script] text-sm text-[#c05754] tracking-wide">
+            <p className="font-[Dancing_Script] text-3xl text-[#c05754] tracking-wide">
               A look back at the nights we lived
             </p>
           </div>
@@ -281,9 +268,12 @@ export default function Gallery() {
                   opacity=".8"
                 />
               </svg>
-              <div className="h-px flex-1" style={{ background: active.accent + "44" }} />
+              <div
+                className="h-px flex-1"
+                style={{ background: active.accent + "44" }}
+              />
               <span
-                className="font-[Bebas_Neue] text-[0.75rem] tracking-[0.3em] px-4 py-1 border uppercase"
+                className="font-[Bebas_Neue] text-3xl px-6 py-3 border"
                 style={{
                   color: active.accent,
                   borderColor: active.accent + "44",
@@ -292,7 +282,10 @@ export default function Gallery() {
               >
                 {active.year} — {active.theme}
               </span>
-              <div className="h-px flex-1" style={{ background: active.accent + "44" }} />
+              <div
+                className="h-px flex-1"
+                style={{ background: active.accent + "44" }}
+              />
               <svg width="14" height="14" viewBox="0 0 14 14">
                 <path
                   d="M7 0L8.4 5H14L9.3 8.1L11 14L7 10.8L3 14L4.7 8.1L0 5H5.6Z"
@@ -302,7 +295,7 @@ export default function Gallery() {
               </svg>
             </div>
             <p
-              className="font-[Dancing_Script] text-center text-sm tracking-wide"
+              className="font-[Dancing_Script] text-center text-xl tracking-wide"
               style={{ color: active.accent + "99" }}
             >
               {active.description}
@@ -322,7 +315,6 @@ export default function Gallery() {
             ))}
           </div>
         </div>
-
       </section>
     </>
   );

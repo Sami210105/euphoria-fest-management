@@ -30,7 +30,7 @@ export default function EventRow({ event }) {
             <p className="text-gray-400 text-sm mt-1">
               {event.venue} | {event.seats}
             </p>
-            <p className="text-red-400 text-sm italic mt-1 font-[Dancing_Script]">
+            <p className="text-[#c05754] text-lg italic mt-1 font-[Dancing_Script]">
               {event.tagline}
             </p>
           </div>
@@ -43,7 +43,7 @@ export default function EventRow({ event }) {
           </button>
           <button
             onClick={() => setExpanded((prev) => !prev)}
-            className="border border-[#c9a88a] text-[#c9a88a] px-4 py-2 text-sm rounded hover:bg-gray-800"
+            className="border border-[#c9a88a] text-[#c9a88a] px-4 py-2 text-lg rounded hover:bg-gray-800"
           >
             {expanded ? "Hide" : "Details"}
           </button>

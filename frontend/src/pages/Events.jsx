@@ -20,7 +20,7 @@ export default function Events() {
       img: bandImg,
       title: "Battle of Bands",
       tagline: "Let the guitars rage",
-      date: "APR 18",
+      date: "APR 15",
       time: "6:00 PM",
       venue: "Open Air Amphitheatre",
       seats: 500,
@@ -34,7 +34,7 @@ export default function Events() {
       img: danceImg,
       title: "Retro Groove",
       tagline: "Boogie back to the golden era",
-      date: "APR 19",
+      date: "APR 15",
       time: "4:00 PM",
       venue: "Main Hall",
       seats: 300,
@@ -47,7 +47,7 @@ export default function Events() {
       img: techImg,
       title: "Tech Talk",
       tagline: "Where innovation meets inspiration",
-      date: "APR 19",
+      date: "APR 15",
       time: "2:00 PM",
       venue: "CITP Auditorium",
       seats: 180,
@@ -174,7 +174,7 @@ export default function Events() {
           <h2 className="text-5xl text-center mt-2 font-[Bebas_Neue] tracking-widest text-[#f5e6d3]">
             Special Guests
           </h2>
-          <p className="text-center text-[#c9a88a] font-[Dancing_Script] italic">
+          <p className="text-center font-2xl text-[#c9a88a] font-[Dancing_Script] italic">
             Icons off field... legends on the stage
           </p>
         </section>
